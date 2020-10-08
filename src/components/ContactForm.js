@@ -17,7 +17,7 @@ const ContactForm = () => {
           <label htmlFor="firstName">First Name*</label>
           <input
             name="firstName"
-            placeholder="Edd"
+            placeholder="First Name"
             ref={register({ required: true, maxLength: 3 })}
           />
           {errors.firstName && (
