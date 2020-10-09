@@ -35,7 +35,9 @@ const ContactForm = () => {
             ref={register({ required: true })}
           />
           {errors.lastName && (
-            <p>Looks like there was an error: {errors.lastName.type}</p>
+            <p data-testid="errorData">
+              Looks like there was an error: {errors.lastName.type}
+            </p>
           )}
         </div>
 
@@ -47,7 +49,9 @@ const ContactForm = () => {
             ref={register({ required: true })}
           />
           {errors.email && (
-            <p>Looks like there was an error: {errors.email.type}</p>
+            <p data-testid="errorData">
+              Looks like there was an error: {errors.email.type}
+            </p>
           )}
         </div>
         <div>

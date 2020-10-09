@@ -34,7 +34,28 @@ test("user can fill out form and submit", async () => {
     fireEvent.click(button);
       const formData = await screen.findByTestId(/submitteddata/i);
       expect(formData).toBeTruthy();
-      // const error = await screen.findByTestId(/errorData/i);
-      // expect(error).toBeFalsy();
+    })
+    // const error = await screen.findByTestId(/errorData/i);
+    // expect(error).not.toBeInTheDocument();
   })
+
+test("user can't submit form when form is not filled out", async () => {
+  render(<ContactForm/>)
+   await act(async () => {
+     const button = screen.getByRole("button");
+     fireEvent.click(button);
+   });
+        const error = screen.findByTestId(/errorData/i);
+        expect(error).toBeTruthy();
+})
+
+test("user can't input invalid email", () => {
+  render(<ContactForm/>);
+  const emailInput = screen.getByPlaceholderText(/email/i);
+  fireEvent.change(emailInput, { target: { value: "me@email.com" } });
+  fireEvent.focusOut(emailInput);
+    
+  const error = screen.findByTestId(/errorData/i);
+  expect(error).not.toBeInTheDocument();
+
 })
