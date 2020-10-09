@@ -52,10 +52,10 @@ test("user can't submit form when form is not filled out", async () => {
 test("user can't input invalid email", () => {
   render(<ContactForm/>);
   const emailInput = screen.getByPlaceholderText(/email/i);
-  fireEvent.change(emailInput, { target: { value: "me@email.com" } });
+  fireEvent.change(emailInput, { target: { value: "meemailcom" } });
   fireEvent.focusOut(emailInput);
     
   const error = screen.findByTestId(/errorData/i);
-  expect(error).not.toBeInTheDocument();
+  expect(error).toBeTruthy();
 
 })
