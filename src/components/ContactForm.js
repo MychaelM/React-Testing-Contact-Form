@@ -17,11 +17,13 @@ const ContactForm = () => {
           <label htmlFor="firstName">First Name*</label>
           <input
             name="firstName"
-            placeholder="Edd"
-            ref={register({ required: true, maxLength: 3 })}
+            placeholder="First Name"
+            ref={register({ required: true, maxLength: 8 })}
           />
           {errors.firstName && (
-            <p>Looks like there was an error: {errors.firstName.type}</p>
+            <p data-testid="errorData">
+              Looks like there was an error: {errors.firstName.type}
+            </p>
           )}
         </div>
 
@@ -29,21 +31,27 @@ const ContactForm = () => {
           <label htmlFor="lastName">Last Name*</label>
           <input
             name="lastName"
-            placeholder="Burke"
+            placeholder="Last Name"
             ref={register({ required: true })}
           />
           {errors.lastName && (
-            <p>Looks like there was an error: {errors.lastName.type}</p>
+            <p data-testid="errorData">
+              Looks like there was an error: {errors.lastName.type}
+            </p>
           )}
         </div>
 
         <div>
-          <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
-            Email*
-          </label>
-          <input name="email" ref={register({ required: true })} />
+          <label htmlFor="email">Email*</label>
+          <input
+            name="email"
+            placeholder="Email"
+            ref={register({ required: true })}
+          />
           {errors.email && (
-            <p>Looks like there was an error: {errors.email.type}</p>
+            <p data-testid="errorData">
+              Looks like there was an error: {errors.email.type}
+            </p>
           )}
         </div>
         <div>
@@ -51,7 +59,10 @@ const ContactForm = () => {
           <textarea name="message" ref={register({ required: false })} />
         </div>
         {data && (
-          <pre style={{ textAlign: "left", color: "white" }}>
+          <pre
+            data-testid="submittedData"
+            style={{ textAlign: "left", color: "white" }}
+          >
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
